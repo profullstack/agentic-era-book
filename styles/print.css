@@ -1,0 +1,35 @@
+/* PDF edition (pandoc --pdf-engine=weasyprint). Layered over book.css. */
+:root {
+  --bg: #ffffff; --panel: #f5f2fa; --ink: #1b1822; --muted: #5a5368;
+  --rule: #dcd6e6; --link: #a3126f; --code-bg: #f4f1f8;
+}
+@page {
+  size: 6in 9in;
+  margin: .8in .7in .85in;
+  @bottom-center { content: counter(page); font: 9pt 'Space Grotesk', sans-serif; color: #8a8399; }
+  @top-center { content: string(chapter); font: 8pt 'Space Grotesk', sans-serif; color: #8a8399; letter-spacing: .12em; text-transform: uppercase; }
+}
+@page cover { size: 6in 10.5in; margin: 0; @bottom-center { content: none; } @top-center { content: none; } }
+@page front { @bottom-center { content: none; } @top-center { content: none; } }
+
+body { background: #fff; font-size: 10.5pt; line-height: 1.55; }
+main, .title-page, .toc, .colophon { max-width: none; padding: 0; }
+
+.cover-page { page: cover; padding: 0; height: 10.5in; width: 6in; }
+.cover-page img { width: 6in; height: 10.5in; object-fit: cover; border-radius: 0; box-shadow: none; }
+
+.title-page { page: front; break-before: page; padding-top: 2.2in; }
+.book-title { font-size: 30pt; }
+.book-subtitle { font-size: 14pt; }
+.toc { page: front; break-before: page; }
+.toc a { padding: .25rem 0; font-size: 10pt; }
+.toc a::after { content: leader('.') target-counter(attr(href), page); color: var(--muted); }
+
+main h1 { string-set: chapter content(text); break-before: page; margin-top: .6in; font-size: 22pt; }
+main h2 { font-size: 14pt; break-after: avoid; }
+main h3 { font-size: 11.5pt; break-after: avoid; }
+pre, blockquote, .tool, .tip, .rule, table { break-inside: avoid; }
+pre code { font-size: 8pt; }
+pre { white-space: pre-wrap; word-break: break-word; }
+a { color: var(--link); text-decoration: none; }
+.colophon { break-before: page; padding-top: 3in; border: 0; }

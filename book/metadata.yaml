@@ -1,0 +1,14 @@
+---
+title: "Software Engineering in the Agentic Era"
+subtitle: "How one engineer and a fleet of AI agents ship real software"
+author: "Profullstack, Inc."
+date: "2026"
+lang: en-US
+rights: "© 2026 Profullstack, Inc. Licensed CC BY-SA 4.0."
+publisher: "Profullstack, Inc."
+description: "A field guide to building software with AI coding agents: the workbench, the loop, the fleet and the people. Free to read, share and remix."
+identifier:
+  - scheme: URI
+    text: https://profullstack.com/book
+cover-image: assets/cover.jpg
+---

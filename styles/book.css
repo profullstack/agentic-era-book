@@ -1,0 +1,85 @@
+/* Web edition. print.css layers page rules on top of this for the PDF. */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&display=swap');
+
+:root {
+  --bg: #0d0b12;
+  --panel: #16131f;
+  --ink: #e9e5f2;
+  --muted: #a39bb8;
+  --rule: #2b2638;
+  --red: #e02337;
+  --magenta: #ba18aa;
+  --violet: #9b3cff;
+  --link: #ff6b9a;
+  --code-bg: #1a1724;
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #fbfaf7; --panel: #f1eef7; --ink: #1d1a24; --muted: #5d5670;
+    --rule: #ddd7e8; --link: #b0157f; --code-bg: #f3f0f8;
+  }
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 400 1.125rem/1.7 'Source Serif 4', Georgia, serif;
+}
+main, .title-page, .toc, .colophon { max-width: 42rem; margin: 0 auto; padding: 0 1.25rem; }
+a { color: var(--link); text-underline-offset: .18em; }
+
+.cover-page { display: flex; justify-content: center; padding: 3rem 1rem 1rem; }
+.cover-page img { width: min(26rem, 100%); height: auto; border-radius: 6px;
+  box-shadow: 0 30px 80px rgba(186, 24, 170, .25), 0 0 0 1px rgba(255,255,255,.06); }
+
+.title-page { text-align: center; padding-top: 3rem; padding-bottom: 3rem; }
+.kicker { font: 600 .8rem/1 'JetBrains Mono', monospace; letter-spacing: .3em; text-transform: uppercase; color: var(--link); }
+.book-title { font: 700 clamp(2.2rem, 7vw, 3.6rem)/1 'Space Grotesk', sans-serif; letter-spacing: -.03em; margin: 1rem 0; }
+.book-subtitle { font-size: 1.3rem; color: var(--muted); font-style: italic; margin: 0 0 1.5rem; }
+.book-author { font: 600 1rem 'Space Grotesk', sans-serif; letter-spacing: .05em; }
+.book-links, .book-rights { font-size: .9rem; color: var(--muted); }
+
+.toc { padding-bottom: 2rem; }
+.toc h2 { font: 700 1rem 'Space Grotesk', sans-serif; text-transform: uppercase; letter-spacing: .2em; color: var(--muted); }
+.toc ul { list-style: none; padding: 0; margin: 0; }
+.toc li { border-bottom: 1px solid var(--rule); }
+.toc a { display: block; padding: .55rem 0; color: var(--ink); text-decoration: none; font-family: 'Space Grotesk', sans-serif; }
+.toc a:hover { color: var(--link); }
+
+h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; line-height: 1.15; letter-spacing: -.015em; }
+main h1 {
+  font-size: clamp(2rem, 5vw, 2.8rem); margin: 6rem 0 2rem; padding-top: 2rem;
+  border-top: 2px solid; border-image: linear-gradient(to right, var(--red), var(--magenta), transparent) 1;
+}
+main h1 .part, main h1 + .epigraph { display: block; }
+main h2 { font-size: 1.55rem; margin: 3rem 0 1rem; }
+main h3 { font-size: 1.2rem; margin: 2.2rem 0 .6rem; }
+
+blockquote {
+  margin: 1.8rem 0; padding: .2rem 1.2rem; border-left: 3px solid var(--magenta);
+  color: var(--muted); font-style: italic;
+}
+code { font: .86em 'JetBrains Mono', monospace; background: var(--code-bg); padding: .1em .35em; border-radius: 4px; }
+pre { background: var(--code-bg); border: 1px solid var(--rule); border-radius: 8px; padding: 1rem 1.1rem; overflow-x: auto; line-height: 1.5; }
+pre code { background: none; padding: 0; font-size: .82rem; }
+hr { border: 0; border-top: 1px solid var(--rule); margin: 3rem 0; }
+table { width: 100%; border-collapse: collapse; font-size: .92rem; margin: 1.5rem 0; display: block; overflow-x: auto; }
+th, td { border-bottom: 1px solid var(--rule); padding: .5rem .6rem; text-align: left; vertical-align: top; }
+th { font-family: 'Space Grotesk', sans-serif; }
+
+/* Callout boxes: ::: tool / ::: tip fenced divs in the Markdown. */
+.tool, .tip, .rule {
+  margin: 2rem 0; padding: 1.1rem 1.3rem; border-radius: 10px;
+  background: var(--panel); border: 1px solid var(--rule);
+}
+.tool { border-left: 4px solid var(--magenta); }
+.tip { border-left: 4px solid var(--violet); }
+.rule { border-left: 4px solid var(--red); }
+.tool > :first-child, .tip > :first-child, .rule > :first-child { margin-top: 0; }
+.tool > :last-child, .tip > :last-child, .rule > :last-child { margin-bottom: 0; }
+.tool p:first-child strong:first-child, .tip p:first-child strong:first-child, .rule p:first-child strong:first-child {
+  font: 700 .78rem 'JetBrains Mono', monospace; letter-spacing: .18em; text-transform: uppercase; color: var(--link);
+}
+
+.colophon { margin-top: 6rem; padding-top: 2rem; padding-bottom: 4rem; border-top: 1px solid var(--rule); font-size: .85rem; color: var(--muted); text-align: center; }

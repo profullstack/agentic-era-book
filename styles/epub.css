@@ -1,0 +1,12 @@
+/* EPUB edition. Readers bring their own fonts and colours; keep this light. */
+body { font-family: serif; line-height: 1.6; }
+h1, h2, h3 { font-family: sans-serif; line-height: 1.2; }
+h1 { margin-top: 2em; }
+code, pre { font-family: monospace; font-size: .85em; }
+pre { white-space: pre-wrap; padding: .8em; border: 1px solid #ccc; border-radius: 4px; }
+blockquote { margin: 1.2em 0; padding-left: 1em; border-left: 3px solid #ba18aa; font-style: italic; }
+div.tool, div.tip, div.rule { margin: 1.4em 0; padding: .8em 1em; border: 1px solid #ccc; border-left: 4px solid #ba18aa; }
+div.rule { border-left-color: #e02337; }
+div.tip { border-left-color: #9b3cff; }
+table { border-collapse: collapse; }
+th, td { border-bottom: 1px solid #ccc; padding: .3em .5em; text-align: left; }

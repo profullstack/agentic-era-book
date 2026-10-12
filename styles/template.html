@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="$lang$">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>$title$</title>
+<meta name="description" content="$description$">
+<meta name="author" content="$author$">
+<link rel="canonical" href="https://profullstack.com/book">
+$for(css)$
+<link rel="stylesheet" href="$css$">
+$endfor$
+</head>
+<body class="$if(print)$print$else$web$endif$">
+
+<section class="cover-page">
+  <img src="assets/cover.jpg" alt="Cover: $title$">
+</section>
+
+<section class="title-page">
+  <p class="kicker">A field guide · $date$</p>
+  <h1 class="book-title">$title$</h1>
+  <p class="book-subtitle">$subtitle$</p>
+  <p class="book-author">$author$</p>
+  <p class="book-links">
+    <a href="https://profullstack.com/book">profullstack.com/book</a><br>
+    <a href="https://github.com/profullstack/agentic-era-book">github.com/profullstack/agentic-era-book</a>
+  </p>
+  <p class="book-rights">$rights$<br>Share it, fork it, send a pull request.</p>
+</section>
+
+$if(toc)$
+<nav id="TOC" class="toc" role="doc-toc">
+  <h2>Contents</h2>
+  $table-of-contents$
+</nav>
+$endif$
+
+<main>
+$body$
+</main>
+
+<footer class="colophon">
+  <p>Built from Markdown with pandoc. Set in Space Grotesk, Source Serif and JetBrains Mono.</p>
+  <p><a href="https://profullstack.com">Profullstack, Inc.</a> · agentic engineering · <a href="https://profullstack.com/plans">hire the fleet</a></p>
+</footer>
+</body>
+</html>

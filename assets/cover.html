@@ -1,0 +1,65 @@
+<!doctype html>
+<!-- Cover source. Render with: scripts/cover.sh (headless Chrome screenshot, 1024x1792). -->
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Space+Mono:wght@400;700&display=block" rel="stylesheet">
+<style>
+  html, body { margin: 0; width: 1024px; height: 1792px; overflow: hidden; background: #050308; }
+  .cover {
+    position: relative; width: 1024px; height: 1792px;
+    background: url(cover-art.png) center / cover no-repeat;
+    color: #fff; font-family: 'Space Grotesk', sans-serif;
+  }
+  .cover::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      linear-gradient(to bottom, rgba(5,3,8,.92) 0%, rgba(5,3,8,.7) 34%, rgba(5,3,8,0) 52%),
+      linear-gradient(to top, rgba(5,3,8,.95) 0%, rgba(5,3,8,.6) 14%, rgba(5,3,8,0) 26%);
+  }
+  .top { position: absolute; top: 110px; left: 84px; right: 84px; }
+  .kicker {
+    font-family: 'Space Mono', monospace; font-size: 26px; letter-spacing: .32em;
+    color: #ff5b8a; text-transform: uppercase; display: flex; align-items: center; gap: 18px;
+  }
+  .kicker::after { content: ''; flex: 1; height: 2px; background: linear-gradient(to right, #e02337, #ba18aa, transparent); }
+  h1 { margin: 44px 0 0; font-weight: 700; line-height: .9; letter-spacing: -.035em; }
+  h1 .a { display: block; font-size: 118px; }
+  h1 .in { display: block; font-family: 'Space Mono', monospace; font-weight: 400; font-size: 40px;
+           letter-spacing: .08em; color: #cfc4ff; margin: 26px 0 14px; }
+  h1 .b { display: block; width: fit-content; font-size: 158px;
+          -webkit-background-clip: text; background-clip: text; color: transparent;
+          filter: drop-shadow(0 0 28px rgba(186,24,170,.45)); }
+  h1 .b1 { background: linear-gradient(100deg, #ff3a4f 0%, #e02337 30%, #ba18aa 100%); }
+  h1 .b2 { background: linear-gradient(100deg, #ba18aa 0%, #9b3cff 100%); }
+  h1 .b { -webkit-background-clip: text; background-clip: text; }
+  .sub { text-shadow: 0 2px 18px #000, 0 0 4px #000; margin-top: 40px; font-size: 33px; line-height: 1.35; color: #e6e0f5; font-weight: 500; max-width: 700px; }
+  .bottom { position: absolute; left: 84px; right: 84px; bottom: 92px;
+            display: flex; justify-content: space-between; align-items: flex-end;
+            font-family: 'Space Mono', monospace; }
+  .brand { font-size: 44px; font-weight: 700; letter-spacing: .02em; }
+  .brand span { background: linear-gradient(to right, #e02337, #ba18aa); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .tag { font-size: 22px; color: #b9b0d0; text-align: right; line-height: 1.6; }
+  .ed { position: absolute; top: 116px; right: 84px; }
+</style>
+</head>
+<body>
+  <div class="cover">
+    <div class="top">
+      <div class="kicker">A field guide · 2026</div>
+      <h1>
+        <span class="a">SOFTWARE</span>
+        <span class="a">ENGINEERING</span>
+        <span class="in">in the</span>
+        <span class="b b1">AGENTIC</span>
+        <span class="b b2">ERA</span>
+      </h1>
+      <div class="sub">How one engineer and a fleet of AI agents ship real software.</div>
+    </div>
+    <div class="bottom">
+      <div class="brand">pro<span>full</span>stack</div>
+      <div class="tag">Free · Open source<br>profullstack.com/book</div>
+    </div>
+  </div>
+</body>
+</html>
