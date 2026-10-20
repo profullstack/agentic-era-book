@@ -32,6 +32,15 @@ CI builds all three on every push, and tagging `v*` publishes them to a GitHub r
 
 The cover is `assets/cover.html` (type) over `assets/cover-art.png` (art), rendered to `assets/cover.jpg` by `scripts/cover.sh`.
 
+### Paperback (KDP)
+
+The build also writes the files a print-on-demand upload needs, and every release attaches them:
+
+| File | What |
+|---|---|
+| `*-print-interior.pdf` | The manuscript: the PDF without its cover page, every page the 6×9 trim, mirrored margins (0.8in gutter, 0.6in outside). `scripts/check-print.py` fails the build if any page or box leaves KDP's margins. |
+| `*-print-cover-white.pdf`, `*-print-cover-cream.pdf` | Wraparound cover (back, spine, front, 0.125in bleed) from `assets/cover-print.html`, rendered by `scripts/cover-print.sh`. The spine is sized from the interior's page count, so upload the one matching the paper chosen in KDP. Front type stays 0.75in inside the trim and 0.5in off the spine; the barcode corner of the back stays empty. |
+
 ## Contribute
 
 Found a mistake, a stale command or a better way? Open a pull request. Callout boxes in the Markdown use pandoc fenced divs:

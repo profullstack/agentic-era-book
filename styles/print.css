@@ -3,20 +3,25 @@
   --bg: #ffffff; --panel: #f5f2fa; --ink: #1b1822; --muted: #5a5368;
   --rule: #dcd6e6; --link: #a3126f; --code-bg: #f4f1f8;
 }
+/* Every page is the 6x9 trim. Mirrored margins: the inside (gutter) is wider than
+   KDP's 0.5in minimum for 151-300 pages and the outside is well over its 0.25in. */
 @page {
   size: 6in 9in;
-  margin: .8in .7in .85in;
+  margin: .8in .6in .85in .8in;
   @bottom-center { content: counter(page); font: 9pt 'Space Grotesk', sans-serif; color: #8a8399; }
   @top-center { content: string(chapter); font: 8pt 'Space Grotesk', sans-serif; color: #8a8399; letter-spacing: .12em; text-transform: uppercase; }
 }
-@page cover { size: 6in 10.5in; margin: 0; @bottom-center { content: none; } @top-center { content: none; } }
+@page :left { margin-left: .6in; margin-right: .8in; }
+@page :right { margin-left: .8in; margin-right: .6in; }
+@page cover { margin: 0; background: #050308; @bottom-center { content: none; } @top-center { content: none; } }
 @page front { @bottom-center { content: none; } @top-center { content: none; } }
 
 body { background: #fff; font-size: 10.5pt; line-height: 1.55; }
 main, .title-page, .toc, .colophon { max-width: none; padding: 0; }
 
-.cover-page { page: cover; padding: 0; height: 10.5in; width: 6in; }
-.cover-page img { width: 6in; height: 10.5in; object-fit: cover; border-radius: 0; box-shadow: none; }
+/* The cover art is taller than 6x9, so it is fitted inside the trim, not cropped past it. */
+.cover-page { page: cover; padding: 0; height: 9in; width: 6in; display: block; text-align: center; }
+.cover-page img { width: auto; height: 9in; max-width: 6in; object-fit: contain; border-radius: 0; box-shadow: none; }
 
 .title-page { page: front; break-before: page; padding-top: 2.2in; }
 .book-title { font-size: 30pt; }
@@ -30,6 +35,10 @@ main h2 { font-size: 14pt; break-after: avoid; }
 main h3 { font-size: 11.5pt; break-after: avoid; }
 pre, blockquote, .tool, .tip, .rule, table { break-inside: avoid; }
 pre code { font-size: 8pt; }
-pre { white-space: pre-wrap; word-break: break-word; }
+pre { white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere; }
+code { overflow-wrap: anywhere; }
+table { display: table; width: 100%; table-layout: fixed; font-size: 8.5pt; }
+th, td { overflow-wrap: anywhere; }
+img { max-width: 100%; }
 a { color: var(--link); text-decoration: none; }
 .colophon { break-before: page; padding-top: 3in; border: 0; }

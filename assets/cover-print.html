@@ -1,0 +1,176 @@
+<!doctype html>
+<!-- Print (KDP paperback) wraparound cover: back + spine + front with 0.125in bleed.
+     Render with: scripts/cover-print.sh (reads the page count, sets ?spine=<inches>).
+     Front cover type stays 0.75in inside the outside/top/bottom trim and 0.5in from the
+     spine (KDP asks for 0.716in and 0.4in); spine type keeps 0.0625in each side. -->
+<html>
+<head>
+<meta charset="utf-8">
+<title>cover</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Space+Mono:wght@400;700&family=Source+Serif+4:ital,wght@0,400;1,400&display=block" rel="stylesheet">
+<style>
+  :root {
+    --bleed: .125in; --trim-w: 6in; --trim-h: 9in;
+    --spine: .3333in;                     /* replaced from ?spine= */
+    --safe: .75in; --spine-safe: .5in;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #050308; }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .wrap {
+    position: relative; overflow: hidden; background: #050308; color: #fff;
+    width: calc(2 * var(--bleed) + 2 * var(--trim-w) + var(--spine));
+    height: calc(2 * var(--bleed) + var(--trim-h));
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  .panel { position: absolute; top: 0; bottom: 0; overflow: hidden; }
+  .back  { left: 0; width: calc(var(--bleed) + var(--trim-w)); }
+  .spine { left: calc(var(--bleed) + var(--trim-w)); width: var(--spine); }
+  .front { left: calc(var(--bleed) + var(--trim-w) + var(--spine)); width: calc(var(--trim-w) + var(--bleed)); }
+
+  /* Front */
+  .front .art { position: absolute; inset: 0; background: url(cover-art.png) center 30% / cover no-repeat; }
+  .shade::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      linear-gradient(to bottom, rgba(5,3,8,.92) 0%, rgba(5,3,8,.72) 40%, rgba(5,3,8,0) 60%),
+      linear-gradient(to top, rgba(5,3,8,.95) 0%, rgba(5,3,8,.6) 14%, rgba(5,3,8,0) 28%);
+  }
+  .front .safe {
+    position: absolute;
+    top: calc(var(--bleed) + var(--safe)); bottom: calc(var(--bleed) + var(--safe));
+    left: var(--spine-safe); right: calc(var(--bleed) + var(--safe));
+  }
+  .kicker {
+    font-family: 'Space Mono', monospace; font-size: .14in; letter-spacing: .3em;
+    color: #ff5b8a; text-transform: uppercase; display: flex; align-items: center; gap: .1in;
+  }
+  .kicker::after { content: ''; flex: 1; height: 1.5px; background: linear-gradient(to right, #e02337, #ba18aa, transparent); }
+  h1 { margin: .24in 0 0; font-weight: 700; line-height: .9; letter-spacing: -.035em; }
+  h1 .a { display: block; font-size: .64in; }
+  h1 .in { display: block; font-family: 'Space Mono', monospace; font-weight: 400; font-size: .22in;
+           letter-spacing: .08em; color: #cfc4ff; margin: .14in 0 .08in; }
+  h1 .b { display: block; width: fit-content; font-size: .86in;
+          -webkit-background-clip: text; background-clip: text; color: transparent; }
+  h1 .b1 { background-image: linear-gradient(100deg, #ff3a4f 0%, #e02337 30%, #ba18aa 100%); }
+  h1 .b2 { background-image: linear-gradient(100deg, #ba18aa 0%, #9b3cff 100%); }
+  .sub { text-shadow: 0 1px 8px #000, 0 0 2px #000; margin-top: .22in; font-size: .18in; line-height: 1.35;
+         color: #e6e0f5; font-weight: 500; max-width: 3.9in; }
+  .front .bottom { position: absolute; left: 0; right: 0; bottom: 0;
+                   display: flex; justify-content: space-between; align-items: flex-end; font-family: 'Space Mono', monospace; }
+  .brand { font-size: .24in; font-weight: 700; letter-spacing: .02em; }
+  .brand span { background: linear-gradient(to right, #e02337, #ba18aa); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .tag { font-size: .12in; color: #d6cfe8; text-align: right; line-height: 1.6; text-shadow: 0 1px 6px #000, 0 0 3px #000, 0 0 2px #000; }
+
+  /* Spine: reads top to bottom, as on US/UK paperbacks */
+  .spine { background: linear-gradient(to bottom, #12081a, #050308 60%); }
+  .spine .safe {
+    position: absolute; top: calc(var(--bleed) + .3in); bottom: calc(var(--bleed) + .3in);
+    left: .0625in; right: .0625in;
+    writing-mode: vertical-rl; display: flex; justify-content: space-between; align-items: center;
+    font-size: min(.15in, calc(var(--spine) - .19in)); white-space: nowrap;
+  }
+  .no-spine-text .spine .safe { display: none; }
+  .spine .t { font-weight: 700; letter-spacing: .04em; }
+  .spine .t em { font-style: normal; color: #ff5b8a; }
+  .spine .p { font-family: 'Space Mono', monospace; font-weight: 700; font-size: .85em; }
+  .spine .p span { color: #ba18aa; }
+
+  /* Back */
+  .back .art { position: absolute; inset: -.3in; background: url(cover-art.png) center 70% / cover no-repeat;
+               transform: scaleX(-1); filter: blur(10px) saturate(1.1); opacity: .45; }
+  .back::after { content: ''; position: absolute; inset: 0;
+                 background: linear-gradient(to bottom, rgba(5,3,8,.92), rgba(5,3,8,.82) 55%, rgba(5,3,8,.95)); }
+  .back .safe {
+    position: absolute; z-index: 1;
+    top: calc(var(--bleed) + var(--safe)); bottom: calc(var(--bleed) + var(--safe));
+    left: calc(var(--bleed) + var(--safe)); right: var(--spine-safe);
+  }
+  .back h2 { margin: .2in 0 .16in; font-size: .3in; line-height: 1.1; letter-spacing: -.02em; }
+  .back p, .back li { font-family: 'Source Serif 4', serif; font-size: .135in; line-height: 1.5; color: #e6e0f5; }
+  .back p { margin: 0 0 .12in; }
+  .back ul { list-style: none; padding: 0; margin: .16in 0; }
+  .back li { padding: .03in 0 .03in .16in; border-left: 2px solid #ba18aa; margin: 0 0 .07in; }
+  .back li b { font-family: 'Space Grotesk', sans-serif; color: #fff; }
+  .back .foot { position: absolute; left: 0; bottom: 0; font-family: 'Space Mono', monospace;
+                font-size: .11in; line-height: 1.6; color: #b9b0d0; }
+  /* KDP prints the ISBN barcode here (2 x 1.2in, bottom right of the back cover); keep it empty. */
+  .barcode { position: absolute; right: calc(.25in); bottom: calc(var(--bleed) + .25in);
+             width: 2.2in; height: 1.4in; }
+</style>
+<script>
+  const spine = parseFloat(new URLSearchParams(location.search).get('spine') || '0.3333');
+  document.documentElement.style.setProperty('--spine', spine + 'in');
+  // KDP allows spine text only from 80 pages up (about 0.18in); below 0.25in leave it blank.
+  if (spine < .25) document.documentElement.classList.add('no-spine-text');
+  const w = (2 * .125 + 2 * 6 + spine).toFixed(4);
+  document.write(`<style>@page { size: ${w}in 9.25in; margin: 0; }</style>`);
+</script>
+</head>
+<body>
+  <div class="wrap">
+    <section class="panel back">
+      <div class="art"></div>
+      <div class="safe">
+        <div class="kicker">A field guide · 2026</div>
+        <h2>Code got cheap.<br>Everything around it did not.</h2>
+        <p>This book was written the way it describes: an engineer framed it, AI agents drafted it in parallel, and a human decided what made the cut. It is a field guide for engineers who already know how to program and want a system around their coding agents instead of a pile of habits.</p>
+        <ul>
+          <li><b>The Shift.</b> Why typing stopped being the bottleneck, and how agents fail.</li>
+          <li><b>The Workbench.</b> The terminal, a browser agents can drive, pairing, a stack agents can read.</li>
+          <li><b>The Loop.</b> Frame, fan out, gate, review, ship everywhere, tell somebody.</li>
+          <li><b>Running the Fleet.</b> Keys, money for machines, identity for agents, compute on tap.</li>
+          <li><b>The People.</b> Careers, and a playbook you can start on Monday.</li>
+        </ul>
+        <p>Free to read, share and remix under CC BY-SA 4.0.</p>
+        <div class="foot">Profullstack, Inc.<br>profullstack.com/book<br>github.com/profullstack/agentic-era-book</div>
+      </div>
+      <div class="barcode"></div>
+    </section>
+    <section class="panel spine">
+      <div class="safe">
+        <span class="t">SOFTWARE ENGINEERING <em>in the</em> AGENTIC ERA</span>
+        <span class="p">pro<span>full</span>stack</span>
+      </div>
+    </section>
+    <section class="panel front shade">
+      <div class="art"></div>
+      <div class="safe" style="z-index:1">
+        <div class="kicker">A field guide · 2026</div>
+        <h1>
+          <span class="a">SOFTWARE</span>
+          <span class="a">ENGINEERING</span>
+          <span class="in">in the</span>
+          <span class="b b1">AGENTIC</span>
+          <span class="b b2">ERA</span>
+        </h1>
+        <div class="sub">How one engineer and a fleet of AI agents ship real software.</div>
+        <div class="bottom">
+          <div class="brand">pro<span>full</span>stack</div>
+          <div class="tag">Open source · CC BY-SA<br>profullstack.com/book</div>
+        </div>
+      </div>
+    </section>
+  </div>
+<script>
+  // Preflight: every piece of type must sit inside its panel's safe box, and nothing on
+  // the back may touch the barcode area. The result goes in the title (read by cover-print.sh).
+  document.fonts.ready.then(() => {
+    const out = [];
+    const inside = (r, s) => r.left >= s.left - .5 && r.right <= s.right + .5 && r.top >= s.top - .5 && r.bottom <= s.bottom + .5;
+    const hit = (r, s) => !(r.right <= s.left || r.left >= s.right || r.bottom <= s.top || r.top >= s.bottom);
+    const textRects = el => [...el.querySelectorAll('*')].filter(n => [...n.childNodes].some(c => c.nodeType === 3 && c.textContent.trim()))
+      .map(n => { const rg = document.createRange(); rg.selectNodeContents(n); return [n, rg.getBoundingClientRect()]; });
+    for (const panel of document.querySelectorAll('.panel')) {
+      const safe = panel.querySelector('.safe').getBoundingClientRect();
+      for (const [n, r] of textRects(panel.querySelector('.safe')))
+        if (!inside(r, safe)) out.push(`${panel.classList[1]}: "${n.textContent.trim().slice(0, 30)}" outside safe area`);
+    }
+    const bc = document.querySelector('.barcode').getBoundingClientRect();
+    for (const [n, r] of textRects(document.querySelector('.back .safe')))
+      if (hit(r, bc)) out.push(`back: "${n.textContent.trim().slice(0, 30)}" overlaps barcode area`);
+    document.title = 'PREFLIGHT ' + (out.length ? out.join(' | ') : 'OK');
+  });
+</script>
+</body>
+</html>

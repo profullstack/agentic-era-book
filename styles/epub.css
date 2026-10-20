@@ -10,3 +10,10 @@ div.rule { border-left-color: #e02337; }
 div.tip { border-left-color: #9b3cff; }
 table { border-collapse: collapse; }
 th, td { border-bottom: 1px solid #ccc; padding: .3em .5em; text-align: left; }
+/* Margins: a small, even inset (readers add their own on top). Nothing may be wider
+   than the text column, so long code, URLs and tables wrap instead of running off the page. */
+body { margin: 0 4%; padding: 0; }
+p, li, td, th, code { overflow-wrap: break-word; word-wrap: break-word; }
+pre { margin: 1em 0; max-width: 100%; overflow-wrap: anywhere; }
+img { max-width: 100%; height: auto; }
+table { width: 100%; max-width: 100%; table-layout: fixed; font-size: .85em; }

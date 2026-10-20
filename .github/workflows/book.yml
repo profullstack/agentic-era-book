@@ -32,6 +32,11 @@ jobs:
       - name: Build
         run: bash scripts/build.sh
 
+      - name: Print cover (KDP wraparound)
+        run: |
+          pip install --quiet pypdf
+          bash scripts/cover-print.sh
+
       - uses: actions/upload-artifact@v4
         with:
           name: book
@@ -49,4 +54,7 @@ jobs:
             dist/software-engineering-in-the-agentic-era.html
             dist/software-engineering-in-the-agentic-era.pdf
             dist/software-engineering-in-the-agentic-era.epub
+            dist/software-engineering-in-the-agentic-era-print-interior.pdf
+            dist/software-engineering-in-the-agentic-era-print-cover-white.pdf
+            dist/software-engineering-in-the-agentic-era-print-cover-cream.pdf
             dist/cover.jpg
