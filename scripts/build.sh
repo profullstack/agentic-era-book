@@ -40,4 +40,23 @@ pandoc "${COMMON[@]}" \
   --pdf-engine=weasyprint \
   -o "dist/$SLUG.pdf"
 
+# Print-on-demand (KDP) interior: same PDF without the cover page, so every page is
+# exactly the 6x9 trim. The wraparound cover is a separate file (scripts/cover-print.sh).
+# scripts/check-print.py fails the build if any page or box leaves KDP's margins.
+echo "PDF (print interior)"
+pandoc "${COMMON[@]}" \
+  --standalone \
+  --template=styles/template.html \
+  --css=styles/book.css \
+  --css=styles/print.css \
+  --variable=print --variable=kdp \
+  -o dist/print-interior.html
+# The checker imports weasyprint, so run it on the interpreter weasyprint was installed
+# into (pipx/uv venv); the shebang may carry flags such as "python -E".
+read -r -a WEASYPRINT_PY <<<"$(head -1 "$(command -v weasyprint)" | sed 's/^#!//')"
+[[ ${WEASYPRINT_PY[0]} == */env ]] && WEASYPRINT_PY=(python3)
+"${WEASYPRINT_PY[@]}" scripts/check-print.py dist/print-interior.html
+weasyprint --base-url . dist/print-interior.html "dist/$SLUG-print-interior.pdf"
+rm dist/print-interior.html
+
 ls -lh dist

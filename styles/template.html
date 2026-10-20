@@ -13,9 +13,12 @@ $endfor$
 </head>
 <body class="$if(print)$print$else$web$endif$">
 
+$if(kdp)$
+$else$
 <section class="cover-page">
   <img src="assets/cover.jpg" alt="Cover: $title$">
 </section>
+$endif$
 
 <section class="title-page">
   <p class="kicker">A field guide · $date$</p>
