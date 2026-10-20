@@ -51,8 +51,11 @@ pandoc "${COMMON[@]}" \
   --css=styles/print.css \
   --variable=print --variable=kdp \
   -o dist/print-interior.html
-WEASYPRINT_PY=$(head -1 "$(command -v weasyprint)" | sed 's/^#!//')
-"$WEASYPRINT_PY" scripts/check-print.py dist/print-interior.html
+# The checker imports weasyprint, so run it on the interpreter weasyprint was installed
+# into (pipx/uv venv); the shebang may carry flags such as "python -E".
+read -r -a WEASYPRINT_PY <<<"$(head -1 "$(command -v weasyprint)" | sed 's/^#!//')"
+[[ ${WEASYPRINT_PY[0]} == */env ]] && WEASYPRINT_PY=(python3)
+"${WEASYPRINT_PY[@]}" scripts/check-print.py dist/print-interior.html
 weasyprint --base-url . dist/print-interior.html "dist/$SLUG-print-interior.pdf"
 rm dist/print-interior.html
 
