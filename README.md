@@ -40,6 +40,9 @@ The build also writes the files a print-on-demand upload needs, and every releas
 |---|---|
 | `*-print-interior.pdf` | The manuscript: the PDF without its cover page, every page the 6×9 trim, mirrored margins (0.8in gutter, 0.6in outside). `scripts/check-print.py` fails the build if any page or box leaves KDP's margins. |
 | `*-print-cover-white.pdf`, `*-print-cover-cream.pdf` | Wraparound cover (back, spine, front, 0.125in bleed) from `assets/cover-print.html`, rendered by `scripts/cover-print.sh`. The spine is sized from the interior's page count, so upload the one matching the paper chosen in KDP. Front type stays 0.75in inside the trim and 0.5in off the spine; the barcode corner of the back stays empty. |
+| `*-hardcover-cover-white.pdf`, `*-hardcover-cover-cream.pdf` | Hardcover (case laminate) cover: 6.197x9.236in boards, 0.591in wrap, spine = paperback spine + 0.189in, type clear of the 0.394in hinge. Same art and preflight. |
+
+Cover sizes match KDP's [cover calculator](https://kdp.amazon.com/en_US/cover-calculator) for 6x9 (148 pages: paperback 12.583x9.25in white, hardcover 14.097x10.417in white).
 
 ## Contribute
 

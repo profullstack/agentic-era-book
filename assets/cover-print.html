@@ -1,8 +1,10 @@
 <!doctype html>
-<!-- Print (KDP paperback) wraparound cover: back + spine + front with 0.125in bleed.
-     Render with: scripts/cover-print.sh (reads the page count, sets ?spine=<inches>).
-     Front cover type stays 0.75in inside the outside/top/bottom trim and 0.5in from the
-     spine (KDP asks for 0.716in and 0.4in); spine type keeps 0.0625in each side. -->
+<!-- Print (KDP) wraparound cover: back + spine + front.
+     Render with: scripts/cover-print.sh, which sets ?binding=paperback|hardcover&spine=<in>.
+     Paperback: 6x9 panels, 0.125in bleed. Hardcover (case laminate): 6.197x9.236in boards,
+     0.591in wrap, 0.394in hinge each side of the spine (KDP cover calculator).
+     Type stays 0.75in inside the trim/board edge and 0.5in off the spine (clear of the
+     hinge); spine type keeps 0.0625in each side. -->
 <html>
 <head>
 <meta charset="utf-8">
@@ -10,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Space+Mono:wght@400;700&family=Source+Serif+4:ital,wght@0,400;1,400&display=block" rel="stylesheet">
 <style>
   :root {
-    --bleed: .125in; --trim-w: 6in; --trim-h: 9in;
+    --edge: .125in; --trim-w: 6in; --trim-h: 9in;   /* replaced per binding */
     --spine: .3333in;                     /* replaced from ?spine= */
     --safe: .75in; --spine-safe: .5in;
   }
@@ -19,14 +21,14 @@
   body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .wrap {
     position: relative; overflow: hidden; background: #050308; color: #fff;
-    width: calc(2 * var(--bleed) + 2 * var(--trim-w) + var(--spine));
-    height: calc(2 * var(--bleed) + var(--trim-h));
+    width: calc(2 * var(--edge) + 2 * var(--trim-w) + var(--spine));
+    height: calc(2 * var(--edge) + var(--trim-h));
     font-family: 'Space Grotesk', sans-serif;
   }
   .panel { position: absolute; top: 0; bottom: 0; overflow: hidden; }
-  .back  { left: 0; width: calc(var(--bleed) + var(--trim-w)); }
-  .spine { left: calc(var(--bleed) + var(--trim-w)); width: var(--spine); }
-  .front { left: calc(var(--bleed) + var(--trim-w) + var(--spine)); width: calc(var(--trim-w) + var(--bleed)); }
+  .back  { left: 0; width: calc(var(--edge) + var(--trim-w)); }
+  .spine { left: calc(var(--edge) + var(--trim-w)); width: var(--spine); }
+  .front { left: calc(var(--edge) + var(--trim-w) + var(--spine)); width: calc(var(--trim-w) + var(--edge)); }
 
   /* Front */
   .front .art { position: absolute; inset: 0; background: url(cover-art.png) center 30% / cover no-repeat; }
@@ -38,8 +40,8 @@
   }
   .front .safe {
     position: absolute;
-    top: calc(var(--bleed) + var(--safe)); bottom: calc(var(--bleed) + var(--safe));
-    left: var(--spine-safe); right: calc(var(--bleed) + var(--safe));
+    top: calc(var(--edge) + var(--safe)); bottom: calc(var(--edge) + var(--safe));
+    left: var(--spine-safe); right: calc(var(--edge) + var(--safe));
   }
   .kicker {
     font-family: 'Space Mono', monospace; font-size: .14in; letter-spacing: .3em;
@@ -65,7 +67,7 @@
   /* Spine: reads top to bottom, as on US/UK paperbacks */
   .spine { background: linear-gradient(to bottom, #12081a, #050308 60%); }
   .spine .safe {
-    position: absolute; top: calc(var(--bleed) + .3in); bottom: calc(var(--bleed) + .3in);
+    position: absolute; top: calc(var(--edge) + .3in); bottom: calc(var(--edge) + .3in);
     left: .0625in; right: .0625in;
     writing-mode: vertical-rl; display: flex; justify-content: space-between; align-items: center;
     font-size: min(.15in, calc(var(--spine) - .19in)); white-space: nowrap;
@@ -83,8 +85,8 @@
                  background: linear-gradient(to bottom, rgba(5,3,8,.92), rgba(5,3,8,.82) 55%, rgba(5,3,8,.95)); }
   .back .safe {
     position: absolute; z-index: 1;
-    top: calc(var(--bleed) + var(--safe)); bottom: calc(var(--bleed) + var(--safe));
-    left: calc(var(--bleed) + var(--safe)); right: var(--spine-safe);
+    top: calc(var(--edge) + var(--safe)); bottom: calc(var(--edge) + var(--safe));
+    left: calc(var(--edge) + var(--safe)); right: var(--spine-safe);
   }
   .back h2 { margin: .2in 0 .16in; font-size: .3in; line-height: 1.1; letter-spacing: -.02em; }
   .back p, .back li { font-family: 'Source Serif 4', serif; font-size: .135in; line-height: 1.5; color: #e6e0f5; }
@@ -93,18 +95,26 @@
   .back li { padding: .03in 0 .03in .16in; border-left: 2px solid #ba18aa; margin: 0 0 .07in; }
   .back li b { font-family: 'Space Grotesk', sans-serif; color: #fff; }
   .back .foot { position: absolute; left: 0; bottom: 0; font-family: 'Space Mono', monospace;
-                font-size: .11in; line-height: 1.6; color: #b9b0d0; }
-  /* KDP prints the ISBN barcode here (2 x 1.2in, bottom right of the back cover); keep it empty. */
-  .barcode { position: absolute; right: calc(.25in); bottom: calc(var(--bleed) + .25in);
-             width: 2.2in; height: 1.4in; }
+                font-size: .1in; line-height: 1.6; color: #b9b0d0; }
+  /* KDP prints the ISBN barcode here (2 x 1.2in, bottom right of the back cover, inside a
+     0.25-0.375in margin, clear of the hardcover hinge); keep a generous box empty. */
+  .barcode { position: absolute; right: .4in; bottom: calc(var(--edge) + .2in);
+             width: 2.3in; height: 1.5in; }
 </style>
 <script>
-  const spine = parseFloat(new URLSearchParams(location.search).get('spine') || '0.3333');
-  document.documentElement.style.setProperty('--spine', spine + 'in');
+  const q = new URLSearchParams(location.search);
+  const hardcover = q.get('binding') === 'hardcover';
+  const spine = parseFloat(q.get('spine') || '0.3333');
+  const edge = hardcover ? .591 : .125, tw = hardcover ? 6.197 : 6, th = hardcover ? 9.236 : 9;
+  const root = document.documentElement.style;
+  root.setProperty('--spine', spine + 'in');
+  root.setProperty('--edge', edge + 'in');
+  root.setProperty('--trim-w', tw + 'in');
+  root.setProperty('--trim-h', th + 'in');
   // KDP allows spine text only from 80 pages up (about 0.18in); below 0.25in leave it blank.
   if (spine < .25) document.documentElement.classList.add('no-spine-text');
-  const w = (2 * .125 + 2 * 6 + spine).toFixed(4);
-  document.write(`<style>@page { size: ${w}in 9.25in; margin: 0; }</style>`);
+  const w = (2 * edge + 2 * tw + spine).toFixed(4), h = (2 * edge + th).toFixed(4);
+  document.write(`<style>@page { size: ${w}in ${h}in; margin: 0; }</style>`);
 </script>
 </head>
 <body>
