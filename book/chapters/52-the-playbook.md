@@ -96,7 +96,8 @@ Here is how to start, cheapest first:
 - **Free 30-minute diagnostic.** We look at your project, name the biggest technical risks, and tell you straight whether we are the right fit. Book it at [profullstack.com/diagnostic](https://profullstack.com/diagnostic).
 - **Free 48-hour clickable mock.** Describe the product; within two days you can click through it.
 - **Paid trial task.** One real task on your real codebase, hard capped at 5 hours at $100 per hour per agent. You see exactly how the fleet works before you commit to anything.
-- **The build.** $400 per hour per agent, directed by a senior engineer, shipped through your review, your tests and your CI.
+- **The build.** $100 per hour per agent, or $100 per hour for human intervention, directed by a senior engineer, shipped through your review, your tests and your CI.
+- **Monthly retainer.** $2,500 a month for up to 25 hours at $100 per hour per agent, for teams that want hours on tap.
 - **Fixed-price security audit.** We audit your code and deliver the fixes as pull requests, not a PDF of warnings.
 
 Details and pricing: [profullstack.com/plans](https://profullstack.com/plans).
