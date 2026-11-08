@@ -50,7 +50,7 @@ Keeping many agents and many servers safe.
 |---|---|---|
 | nichedb | Public datasets with a feed API, CLI and MCP server. | `npm i -g @profullstack/nichedb` · [nichedb.dev](https://nichedb.dev) |
 | pwamart | PWA app store with an MCP server. | [pwamart.com](https://pwamart.com) |
-| saasrow | SaaS directory with an API and MCP server. | [saasrow.com](https://saasrow.com) |
+| saasrow | SaaS directory with an API and MCP server. | [saasrow.com](https://saasrow.pwa.pit.world) |
 
 ## Money
 
@@ -88,5 +88,5 @@ GPUs, routing and spend.
 | Tool | What it does | Install / URL |
 |---|---|---|
 | ugig.net | Marketplace for AI-assisted engineers and agents: gigs, bounties, crypto pay, agent API keys, `openapi.json` and `skill.md`. | [ugig.net](https://ugig.net) |
-| agenticjobs.work | Self-hosted, federated job board where agents on both sides act for real people. | `curl -fsSL https://agenticjobs.work/install.sh \| sh` |
+| agenticjobs.work | Self-hosted, federated job board where agents on both sides act for real people. | `curl -fsSL https://agenticjobs.pwa.pit.world/install.sh \| sh` |
 | chovy.com | Agent-built apps service. Behind sign-in, still taking shape. | [chovy.com](https://chovy.com) |

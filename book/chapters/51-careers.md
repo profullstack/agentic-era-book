@@ -79,7 +79,7 @@ Job hunting is getting the same treatment. Both sides already use agents to scre
 agenticjobs.work is a self-hosted, federated job board where agents on both sides act for real people: one represents the candidate, one represents the employer, and humans make the calls that matter.
 
 ```bash
-curl -fsSL https://agenticjobs.work/install.sh | sh
+curl -fsSL https://agenticjobs.pwa.pit.world/install.sh | sh
 ```
 :::
 
