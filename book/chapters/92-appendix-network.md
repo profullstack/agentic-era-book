@@ -42,7 +42,7 @@ Every product below was built by a small number of humans directing a fleet of a
 | Site | What it is |
 |---|---|
 | [ugig.net](https://ugig.net) | Gigs and bounties for AI-assisted engineers and agents |
-| [agenticjobs.work](https://agenticjobs.work) | Federated job board where agents act for real people on both sides |
+| [agenticjobs.work](https://agenticjobs.pwa.pit.world) | Federated job board where agents act for real people on both sides |
 | [chovy.com](https://chovy.com) | Apps built for you by an agent fleet |
 | [outreachgraph.com](https://outreachgraph.com) | Public intent signals turned into policy-checked outreach |
 
@@ -53,9 +53,9 @@ Every product below was built by a small number of humans directing a fleet of a
 | [mynaposter.com](https://mynaposter.com) | myna, the terminal social media manager |
 | [rssamplifier.com](https://rssamplifier.com) | Open, agent-first directory of independent blogs, with MCP |
 | [bl0ggers.com](https://bl0ggers.com) | AI publishing with a human in the loop and an API, MCP and CLI per publication |
-| [brisk.news](https://brisk.news) | News summaries and audio briefings from the small web |
+| [brisk.news](https://brisk.pwa.pit.world) | News summaries and audio briefings from the small web |
 | [p0dcasters.com](https://p0dcasters.com) | Directory of podcasts on their own domains |
-| [saasrow.com](https://saasrow.com) | SaaS directory with an API and MCP for listings |
+| [saasrow.com](https://saasrow.pwa.pit.world) | SaaS directory with an API and MCP for listings |
 | [pwamart.com](https://pwamart.com) | App store for progressive web apps, with MCP |
 
 ## Everything else we ship
@@ -71,19 +71,19 @@ The method is not limited to developer tools. The same loop built all of these:
 | [watchnews.now](https://watchnews.now) | News and live news channels |
 | [nightcell7.com](https://nightcell7.com) | Browser-launched episodic first-person shooter |
 | [reeleel.com](https://reeleel.com) | Local-first video analysis for youth sports |
-| [aiornot.vote](https://aiornot.vote) | Guess whether it is AI or real |
-| [bg0ne.com](https://bg0ne.com) | Open-source background remover, with x402 per call for agents |
-| [typeheard.com](https://typeheard.com) | Transcription on whisper.cpp, billed per minute |
+| [aiornot.vote](https://aiornot.pwa.pit.world) | Guess whether it is AI or real |
+| [bg0ne.com](https://bg0ne.pwa.pit.world) | Open-source background remover, with x402 per call for agents |
+| [typeheard.com](https://typeheard.pwa.pit.world) | Transcription on whisper.cpp, billed per minute |
 | [mediaanalyzer.pro](https://mediaanalyzer.pro) | AI descriptions and sorting for photo and video libraries |
-| [d3vices.com](https://d3vices.com) | In-browser tests for mic, camera, keyboard and gamepad |
+| [d3vices.com](https://d3vices.pwa.pit.world) | In-browser tests for mic, camera, keyboard and gamepad |
 | [marksyncr.com](https://marksyncr.com) | Bookmark sync across browsers through your own storage |
 | [qrypt.chat](https://qrypt.chat) | Messaging with quantum-resistant end-to-end encryption |
 | [smshub.dev](https://smshub.dev) | Unified SMS inbox and API |
 | [d0rz.com](https://d0rz.com) | Local rides, errands and delivery, with API and MCP |
-| [c0upons.com](https://c0upons.com) | Community coupon codes, with a read-only MCP |
-| [c0ncerts.com](https://c0ncerts.com) | Ticketed band livestreams (early) |
+| [c0upons.com](https://c0upons.pwa.pit.world) | Community coupon codes, with a read-only MCP |
+| [c0ncerts.com](https://c0ncerts.pwa.pit.world) | Ticketed band livestreams (early) |
 | [b1dz.com](https://b1dz.com) | Profit monitor across auctions, travel and markets |
-| [datamart.help](https://datamart.help) | Public services near you, every fact sourced, with MCP |
-| [recipepdfs.com](https://recipepdfs.com) | Marketplace for recipe cookbooks |
+| [datamart.help](https://datamart.pwa.pit.world) | Public services near you, every fact sourced, with MCP |
+| [recipepdfs.com](https://recipepdfs.pwa.pit.world) | Marketplace for recipe cookbooks |
 
 Want something like this built for you? That is what we do: [profullstack.com/plans](https://profullstack.com/plans).
